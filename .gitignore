@@ -1,0 +1,4 @@
+*.zip
+*.done
+test.json
+.DS_Store
