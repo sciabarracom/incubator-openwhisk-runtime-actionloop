@@ -1,10 +1,10 @@
-all: classic turbo
+all:  classic actionloop 
 
 classic:
 	echo "*** Testing OpenWhisk Classic NodeJS *** "
-	bash test.sh openwhisk/action-nodejs-v8
+	bash test.sh openwhisk/nodejs6action
 
-turbo:
+actionloop:
 	echo "*** Testing ActionLoop NodeJS ***"
 	bash test.sh msciab/actionloop-nodejs-v6.14
 
