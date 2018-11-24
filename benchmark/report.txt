@@ -1,0 +1,12 @@
+*** nodejs6action
+Requests/sec:   1181.36
+Transfer/sec:    264.19KB
+*** python3action
+Requests/sec:     19.80
+Transfer/sec:      2.58KB
+*** actionloop-golang-v1.11
+Requests/sec:     83.80
+Transfer/sec:     11.95KB
+*** PROTO new actionloop-golang-v1.11
+Requests/sec:   1031.38
+Transfer/sec:    175.25KB
