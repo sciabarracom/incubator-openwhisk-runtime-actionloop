@@ -1,5 +1,5 @@
 USER=docker.io/msciab
-IMG=$(USER)/actionloop-nodejs-v6.14
+IMG=whisk/actionloop-nodejs-v6.14
 
 build:
 	docker build -t $(IMG) .
