@@ -2,11 +2,12 @@ all: golang node node-actionloop python python-actionloop php
 
 report.txt:
 	@echo "Performance report">report.txt
+	@echo "*** actionloop-golang" >>report.txt
 	make  golang | grep '/sec' >>report.txt
 	@echo "*** nodejs6action" >>report.txt
-	make nodejs | grep '/sec' >>report.txt
+	make node | grep '/sec' >>report.txt
 	@echo "*** actionloop-nodejs6action" >>report.txt
-	make nodejs-actionloop | grep '/sec' >>report.txt
+	make node-actionloop | grep '/sec' >>report.txt
 	@echo "*** python3action" >>report.txt
 	make python | grep '/sec' >>report.txt
 	@echo "*** actionloop-python" >>report.txt
