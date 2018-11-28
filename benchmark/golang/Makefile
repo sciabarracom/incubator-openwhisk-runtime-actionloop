@@ -1,32 +1,23 @@
-IMG?=openwhisk/actionloop-golang-v1.11
+IMG?=whisk/actionloop-golang-v1.11
+IMG2?=whisk/actionloop
 
-all: classic turbo
+all: golang bash
 
-classic:
-	echo "*** Current ActionLoop Image ***"
+test.lua:
+	echo 'wrk.method = "POST"'>test.lua
+	echo "wrk.body = '{\"value\":{\"name\":\"Mike\"}}'">>test.lua
+	echo 'wrk.headers["Content-Type"] = "application/json"'>>test.lua
+
+golang: test.lua
 	docker run -d --name under-test --rm -p 8080:8080 $(IMG)
-	invoke init exec.go
+	invoke init main.go
 	wrk -t1 -c1 -stest.lua http://localhost:8080/run
 	docker kill under-test
 
-turbo: image
-	echo "*** Proto ActionLoop NoGoroutine ***"
-	docker run -p 8080:8080 -d --name under-test --rm under-test
+bash: test.lua
+	docker run -d --name under-test --rm -p 8080:8080 $(IMG2)
+	invoke init main.sh
 	wrk -t1 -c1 -stest.lua http://localhost:8080/run
 	docker kill under-test
 
-image: exec http
-	docker build -t under-test .
-
-clean:
-	-rm http exec
-	-docker rmi under-test
-
-http:
-	GOARCH=amd64 GOOS=linux go build http.go
-
-exec:
-	docker run -i openwhisk/actionloop-golang-v1.11 -compile main <exec.go >exec.zip
-	unzip exec.zip
-
-.PHONY: image test
+.PHONY: all golang bash

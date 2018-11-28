@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -14,27 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM whisk/actionloop as builder
-
-FROM python:3.6-stretch
-
-# Install common modules for python
-RUN pip install \
-    beautifulsoup4==4.6.3 \
-    httplib2==0.11.3 \
-    kafka_python==1.4.3 \
-    lxml==4.2.5 \
-    python-dateutil==2.7.3 \
-    requests==2.19.1 \
-    scrapy==1.5.1 \
-    simplejson==3.16.0 \
-    virtualenv==16.0.0 \
-    twisted==18.7.0
-
-RUN mkdir -p /pythonAction/action
-WORKDIR /pythonAction
-COPY --from=builder /bin/proxy /bin/proxy
-ADD pythonbuild.py /bin/compile
-ADD pythonbuild.py.launcher.py /bin/compile.launcher.py
-ENV OW_COMPILER=/bin/compile
-ENTRYPOINT [ "/bin/proxy" ]
+while read line
+do
+   name="$(echo $line | jq -r .value.name)"
+   echo msg="hello $name"
+   echo '{"hello": "'$name'"}' >&3
+done

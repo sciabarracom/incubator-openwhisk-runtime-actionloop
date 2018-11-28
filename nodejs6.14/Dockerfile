@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM openwhisk/actionloop as builder
+FROM whisk/actionloop as builder
 
 FROM node:6.14.4-jessie
 

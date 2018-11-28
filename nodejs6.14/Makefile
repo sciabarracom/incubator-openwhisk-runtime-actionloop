@@ -10,5 +10,4 @@ publish:
 clean:
 	docker rmi $(IMG)
 
-
 .PHONY: build publish clean
