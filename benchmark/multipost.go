@@ -35,20 +35,23 @@ func doPost(url string, data []byte) {
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
 	req.Header.Set("Content-Type", "application/json")
 
+	transport := http.Transport{}
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Printf("!!! Connection Error: %s -> %s\n", url, err)
 		return
 	}
-	defer resp.Body.Close()
 	if resp.StatusCode != 200 {
 		log.Printf("!!! Http Error: %s -> %s\n", url, resp.Status)
 	}
 	body, _ := ioutil.ReadAll(resp.Body)
+
 	if *Debug {
 		log.Printf("<<< %s", string(body))
 	}
+	resp.Body.Close()
+	transport.CloseIdleConnections()
 }
 
 func encodeInit(filename string) ([]byte, error) {

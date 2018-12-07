@@ -1,5 +1,10 @@
 *.zip
 *.done
+*.init
+*.run
+*.test
+*.done
 test.json
 .DS_Store
 main.*.json
+multipost

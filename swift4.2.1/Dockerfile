@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM openwhisk/actionloop as builder
+FROM whisk/actionloop as builder
 
 FROM swift:4.2.1
 
@@ -29,7 +29,6 @@ ENV LANG="en_US.UTF-8" \
 
 RUN mkdir -p /swiftAction
 WORKDIR /swiftAction
-
 
 COPY --from=builder /bin/proxy /bin/proxy
 ADD swiftbuild.py /bin/compile

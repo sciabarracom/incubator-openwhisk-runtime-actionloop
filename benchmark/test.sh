@@ -12,12 +12,17 @@ seq $START $END | while read port
 do docker run -d -p $port:8080  --name "under-test-$port" --rm $RT
 done
 # testing
+sleep 1
 seq $START $END | xargs time ./multipost -init $AC -run run.dat 2>$ID.init 
+sleep 1
 echo $START | xargs time ./multipost -run run.dat -repeat $NN 2>$ID.run
-echo init-run $(printf "%06d" $N)  $(cat $ID.init) $RT $AC >$OUT
-echo only-run $(printf "%06d" $NN)  $(cat $ID.run) $RT $AC>>$OUT
+INIT=$(awk '{print $1}' <$ID.init)
+RUN=$(awk '{print $1}' <$ID.run)
+echo  $(printf "%05d init %05.2f" $N $INIT) $RT $AC >>$OUT
+echo  $(printf "%05d run_ %05.2f" $NN $RUN) $RT $AC>>$OUT
 # stopping images
 seq $START $END | while read port 
 do docker kill "under-test-$port" 
 done
+cat $OUT
 
