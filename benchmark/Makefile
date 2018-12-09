@@ -1,9 +1,9 @@
-N?=10
-NN?=100
+N?=100
+NN?=1000
 
-.PHONY: result.json
-result.json:
-	@python report.py *.test
+.PHONY: index.html
+index.html:
+	@python report.py *.test >index.html
 
 tests: 
 	@grep '.test:' Makefile | grep -v grep | sed -e 's/:.*//'

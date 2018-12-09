@@ -1,0 +1,30 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+</head>
+<body>
+</body>
+<h1>Run</h1>
+<canvas id="runChart"></canvas>
+<h1>Init</h1>
+<canvas id="initChart"></canvas>
+<script>
+var barDataRun = {"labels": ["action-nodejs-v8 main.js", "nodejs6action main.js", "action-nodejs-v10 main.js", "action-php-v7.2 main.php", "actionloop-nodejs-v6.14 main.js", "actionloop-golang-v1.11 main.go", "actionloop-swift-v4.2.1 main.swift", "actionloop-golang-v1.11 main_go.zip", "actionloop-python-v3.6 main.py", "action-swift-v4.1 main.swift", "action-swift-v3.1.1 main.swift", "action-php-v7.1 main.php", "python3action main.py", "python2action main.py", "action-ruby-v2.5 main.rb"], "datasets": [{"borderColor": "cyan", "data": [3.27, 4.1, 3.23, 9.02, 11.07, 38.79, 174.66, 6.26, 9.68, 56.31, 202.97, 10.95, 5.28, 5.19, 99.07], "borderWidth": 1, "backgroundColor": "#4dc9f6", "label": "init_100"}, {"borderColor": "green", "data": [1.16, 1.18, 1.24, 2.49, 11.66, 11.71, 11.82, 11.85, 12.01, 12.69, 14.11, 22.99, 50.42, 50.69, 333.7], "borderWidth": 1, "backgroundColor": "#00a950", "label": "run_1000"}]};
+var barDataInit = {"labels": ["action-nodejs-v10 main.js", "action-nodejs-v8 main.js", "nodejs6action main.js", "python2action main.py", "python3action main.py", "actionloop-golang-v1.11 main_go.zip", "action-php-v7.2 main.php", "actionloop-python-v3.6 main.py", "action-php-v7.1 main.php", "actionloop-nodejs-v6.14 main.js", "actionloop-golang-v1.11 main.go", "action-swift-v4.1 main.swift", "action-ruby-v2.5 main.rb", "actionloop-swift-v4.2.1 main.swift", "action-swift-v3.1.1 main.swift"], "datasets": [{"borderColor": "cyan", "data": [3.23, 3.27, 4.1, 5.19, 5.28, 6.26, 9.02, 9.68, 10.95, 11.07, 38.79, 56.31, 99.07, 174.66, 202.97], "borderWidth": 1, "backgroundColor": "#4dc9f6", "label": "init_100"}, {"borderColor": "green", "data": [1.24, 1.16, 1.18, 50.69, 50.42, 11.85, 2.49, 12.01, 22.99, 11.66, 11.71, 12.69, 333.7, 11.82, 14.11], "borderWidth": 1, "backgroundColor": "#00a950", "label": "run_1000"}]};
+Chart.scaleService.updateScaleDefaults('linear', {
+    ticks: { min: 0 }
+});
+var ctx1 = document.getElementById('runChart').getContext('2d');
+var chart1 = new Chart(ctx1, {
+    type: 'horizontalBar',
+    data: barDataRun
+});
+var ctx2 = document.getElementById('initChart').getContext('2d');
+var chart1 = new Chart(ctx2, {
+    type: 'horizontalBar',
+    data: barDataInit
+});
+</script>
+</html>
+

@@ -76,7 +76,7 @@ def post_process():
     init_json = make_bar_data(keys)
     ls1 = [ (m[k]['run'], k,m[k]) for k in m]
     ls1.sort(key=lambda x: x[0])
-    keys1 = [k[1] for k in ls]
+    keys1 = [k[1] for k in ls1]
     run_json = make_bar_data(keys1)
 
 #print(json.dumps(result))
