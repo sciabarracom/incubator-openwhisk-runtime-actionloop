@@ -88,9 +88,14 @@ def html():
 </head>
 <body>
 </body>
-<h1>Run</h1>
+<h1>OpenWhisk Runtimes Benchmark</h1>
+<p>Test procedure: it uses a multipost Go application, able to run multiple init and run sequentially.</p>
+<p><b>Run</b>: Started and Initialized one runtime with an "Hello" action, then executed 1000 run on the same runtime.</p>
+<p><b>Init</b>: Started 100 runtimes on different ports, then executed 100 inits in sequence.</p>
+<p>Time is measuerd in seconds using <tt>time</tt> on a sigle execution of <tt>multipost</tt>.</p>
+<h1>Sorted by Run</h1>
 <canvas id="runChart"></canvas>
-<h1>Init</h1>
+<h1>Sorted Init</h1>
 <canvas id="initChart"></canvas>
 <script>
 var barDataRun = %s;
