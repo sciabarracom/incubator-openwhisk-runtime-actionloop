@@ -15,8 +15,8 @@ main_go.zip: main.go
 	docker run -i openwhisk/actionloop-golang-v1.11 -compile main <$< >$@
 
 go.test: multipost main_go.zip
-	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11 main.go $@
-	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11 main_go.zip $@
+	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11:b51980e main.go $@
+	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11:b51980e main_go.zip $@
 
 node.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/nodejs6action main.js $@
