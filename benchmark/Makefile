@@ -23,10 +23,7 @@ main_swift.zip: main.swift
 	docker run -i msciab/actionloop-swift-v4.2.1 -compile main <$< >$@
 
 go.test: multipost main_go.zip
-	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11:b51980e main.go $@
 	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11:b51980e main_go.zip $@
-gccgo.test: multipost main_gccgo.zip
-	bash test.sh $(N) $(NN) msciab/actionloop-gccgo-v8 main.go $@
 	bash test.sh $(N) $(NN) msciab/actionloop-gccgo-v8 main_gccgo.zip $@
 
 node.test: multipost
@@ -47,7 +44,6 @@ php.test: multipost
 swift.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/action-swift-v3.1.1 main.swift $@
 	bash test.sh $(N) $(NN) openwhisk/action-swift-v4.1 main.swift $@
-	bash test.sh $(N) $(NN) msciab/actionloop-swift-v4.2.1 main.swift $@
 	bash test.sh $(N) $(NN) msciab/actionloop-swift-v4.2.1 main_swift.zip $@
 
 ruby.test: multipost

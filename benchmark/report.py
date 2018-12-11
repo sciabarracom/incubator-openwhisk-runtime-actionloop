@@ -16,7 +16,8 @@ def process_line(info, time):
     t = time.split(" ")
     time = float(t[0])
     key = i[0]
-    label = "%s %s" % (i[1], i[2])
+    #label = "%s %s" % (i[1], i[2])
+    label = i[1]
     legend = "%s_%s" % (i[0], i[3])
     legends[key] = legend
     if not label in groups:
