@@ -7,6 +7,9 @@ index.html:
 	-rm ../index.html
 	mv index.html ..
 
+run_tests:
+	make $$(make tests)
+
 tests:
 	@grep '.test:' Makefile | grep -v grep | sed -e 's/:.*//'
 
@@ -49,6 +52,8 @@ swift.test: multipost
 ruby.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/action-ruby-v2.5 main.rb $@
 
+crystal.test: multipost
+	bash test.sh $(N) $(NN) juice10/actionloop-crystal-v0.27 main.cr $@
+
 clean:
 	-rm *.test *.init *.run
-
