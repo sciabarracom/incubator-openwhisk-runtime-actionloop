@@ -95,7 +95,7 @@ def html():
 <p>Time is measuerd in seconds using <tt>time</tt> on a sigle execution of <tt>multipost</tt>.</p>
 <h1>Sorted by Run</h1>
 <canvas id="runChart"></canvas>
-<h1>Sorted Init</h1>
+<h1>Sorted by Init</h1>
 <canvas id="initChart"></canvas>
 <script>
 var barDataRun = %s;

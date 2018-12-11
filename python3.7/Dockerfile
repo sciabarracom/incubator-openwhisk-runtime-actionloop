@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM whisk/actionloop as builder
+FROM openwhisk/actionloop: as builder
 
-FROM python:3.6-stretch
+FROM python:3.7-stretch
 
 # Install common modules for python
 RUN pip install \
