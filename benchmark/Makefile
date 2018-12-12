@@ -17,7 +17,7 @@ multipost: multipost.go
 	go build -o multipost multipost.go
 
 main_gccgo.zip: main.go
-	docker run -i msciab/actionloop-gccgo-v8 -compile main <$< >$@
+	docker run -i msciab/actionloop-gccgo-v1.10 -compile main <$< >$@
 
 main_go.zip: main.go
 	docker run -i openwhisk/actionloop-golang-v1.11 -compile main <$< >$@
@@ -25,7 +25,10 @@ main_go.zip: main.go
 main_swift.zip: main.swift
 	docker run -i msciab/actionloop-swift-v4.2.1 -compile main <$< >$@
 
-go.test: multipost main_go.zip
+main_cr.zip: main.cr
+	docker run -i juice10/actionloop-crystal-v0.27 -compile main <$< >$@
+
+go.test: multipost main_go.zip main_gccgo.zip
 	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11:b51980e main_go.zip $@
 	bash test.sh $(N) $(NN) msciab/actionloop-gccgo-v8 main_gccgo.zip $@
 
@@ -53,7 +56,7 @@ ruby.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/action-ruby-v2.5 main.rb $@
 
 crystal.test: multipost
-	bash test.sh $(N) $(NN) juice10/actionloop-crystal-v0.27 main.cr $@
+	bash test.sh $(N) $(NN) juice10/actionloop-crystal-v0.27 main_cr.zip $@
 
 clean:
 	-rm *.test *.init *.run
