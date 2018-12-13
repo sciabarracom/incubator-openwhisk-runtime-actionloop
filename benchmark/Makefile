@@ -29,8 +29,8 @@ main_cr.zip: main.cr
 	docker run -i juice10/actionloop-crystal-v0.27 -compile main <$< >$@
 
 go.test: multipost main_go.zip main_gccgo.zip
+	bash test.sh $(N) $(NN) msciab/actionloop-gccgo-v1.10 main_gccgo.zip $@
 	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11:b51980e main_go.zip $@
-	bash test.sh $(N) $(NN) msciab/actionloop-gccgo-v8 main_gccgo.zip $@
 
 node.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/nodejs6action main.js $@
@@ -55,7 +55,7 @@ swift.test: multipost
 ruby.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/action-ruby-v2.5 main.rb $@
 
-crystal.test: multipost
+crystal.test: multipost main_cr.zip
 	bash test.sh $(N) $(NN) juice10/actionloop-crystal-v0.27 main_cr.zip $@
 
 clean:
