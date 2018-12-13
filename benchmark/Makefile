@@ -46,6 +46,7 @@ python.test: multipost
 php.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/action-php-v7.1 main.php $@
 	bash test.sh $(N) $(NN) openwhisk/action-php-v7.2 main.php $@
+	bash test.sh $(N) $(NN) openwhisk/action-php-v7.3 main.php $@
 
 swift.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/action-swift-v3.1.1 main.swift $@
