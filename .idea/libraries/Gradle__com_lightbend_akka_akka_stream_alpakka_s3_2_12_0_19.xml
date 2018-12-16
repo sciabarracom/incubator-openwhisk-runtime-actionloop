@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.lightbend.akka:akka-stream-alpakka-s3_2.12:0.19">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.lightbend.akka/akka-stream-alpakka-s3_2.12/0.19/a847d16e45ba3cdb0a27dcde58d1c693151a12b9/akka-stream-alpakka-s3_2.12-0.19.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.lightbend.akka/akka-stream-alpakka-s3_2.12/0.19/5e258e12793a7e8461dfdd1caabe1c4b407e22ee/akka-stream-alpakka-s3_2.12-0.19-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

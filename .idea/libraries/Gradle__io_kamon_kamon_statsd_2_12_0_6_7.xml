@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.kamon:kamon-statsd_2.12:0.6.7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kamon/kamon-statsd_2.12/0.6.7/187dd5d66b14763f1913b5543aea0ce31a2a582d/kamon-statsd_2.12-0.6.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kamon/kamon-statsd_2.12/0.6.7/2e9d4dacff9e794d6c0910625661d770345ada4d/kamon-statsd_2.12-0.6.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

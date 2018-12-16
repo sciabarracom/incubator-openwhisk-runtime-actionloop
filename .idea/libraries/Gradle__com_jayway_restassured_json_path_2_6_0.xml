@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.jayway.restassured:json-path:2.6.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jayway.restassured/json-path/2.6.0/ec7672a308d204b02e751f0b6545f48296a94d6b/json-path-2.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jayway.restassured/json-path/2.6.0/98a389062e03b65ad641f6c39554152e82a838ce/json-path-2.6.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

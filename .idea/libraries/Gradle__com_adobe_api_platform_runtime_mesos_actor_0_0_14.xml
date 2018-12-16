@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.adobe.api.platform.runtime:mesos-actor:0.0.14">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.adobe.api.platform.runtime/mesos-actor/0.0.14/9128e1e501d2df102cd67b2c5801725f820320f7/mesos-actor-0.0.14.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.adobe.api.platform.runtime/mesos-actor/0.0.14/253c052fa9ff9e7f82241573ba87c83b3f90ca5a/mesos-actor-0.0.14-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

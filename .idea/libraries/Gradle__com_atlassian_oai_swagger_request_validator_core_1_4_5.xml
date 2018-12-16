@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.atlassian.oai:swagger-request-validator-core:1.4.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.oai/swagger-request-validator-core/1.4.5/602049eec9aa778c7cb50448544507990828c9f2/swagger-request-validator-core-1.4.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.oai/swagger-request-validator-core/1.4.5/59aac000d0359e180441978b0df44679f646e3ca/swagger-request-validator-core-1.4.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

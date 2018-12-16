@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.rogach:scallop_2.12:3.1.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.rogach/scallop_2.12/3.1.2/fbb86b577ea2ae0bb8e62fe025b9514a6a7601a9/scallop_2.12-3.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.rogach/scallop_2.12/3.1.2/bdff2584ac66124322ca93ed5966d8f3be578ebd/scallop_2.12-3.1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

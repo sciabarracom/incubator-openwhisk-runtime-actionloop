@@ -1,14 +1,16 @@
-USER=docker.io/msciab
-IMG=$(USER)/actionloop-gccgo-v1.10
+HUB?=docker.io/actionloop
+IMG=gccgo-v1.10
+VER=1
 
 build:
-	docker build -t $(IMG) .
+	docker build -t whisk/actionloop-$(IMG) .
+	docker tag whisk/actionloop-$(IMG) $(HUB)/$(IMG):$(VER)
 
 publish:
-	docker push  $(IMG)
+	docker push $(HUB)/$(IMG):$(VER)
 
 clean:
-	docker rmi $(IMG)
+	docker rmi $(HUB)/$(IMG):$(VER) whisk/actionloop-$(IMG) 
 
 
 .PHONY: build publish clean

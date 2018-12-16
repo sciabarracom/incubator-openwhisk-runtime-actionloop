@@ -8,3 +8,6 @@ test.json
 .DS_Store
 main.*.json
 multipost
+.idea/
+.gradle/
+__pycache__/

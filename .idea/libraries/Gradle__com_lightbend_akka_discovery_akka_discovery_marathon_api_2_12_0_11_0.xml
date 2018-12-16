@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.lightbend.akka.discovery:akka-discovery-marathon-api_2.12:0.11.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.lightbend.akka.discovery/akka-discovery-marathon-api_2.12/0.11.0/ffe11636c75748eb28d2fc8f52009c2cc6f0ba82/akka-discovery-marathon-api_2.12-0.11.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.lightbend.akka.discovery/akka-discovery-marathon-api_2.12/0.11.0/7d8eabf2d3d999cc92673cd62b04938851b5f4d5/akka-discovery-marathon-api_2.12-0.11.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

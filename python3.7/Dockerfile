@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM openwhisk/actionloop: as builder
+FROM openwhisk/actionloop:latest as builder
 
 FROM python:3.7-stretch
 

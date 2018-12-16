@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.microsoft.azure:azure-cosmosdb-commons:2.3.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-cosmosdb-commons/2.3.0/6fd4844ff53b6973db98e1e50428e5b73c9a6e9f/azure-cosmosdb-commons-2.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/azure-cosmosdb-commons/2.3.0/198cee8779946b31d0d42f1e1875f650851d29e3/azure-cosmosdb-commons-2.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -41,7 +41,7 @@ node.test: multipost
 python.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/python2action main.py $@
 	bash test.sh $(N) $(NN) openwhisk/python3action main.py $@
-	bash test.sh $(N) $(NN) msciab/actionloop-python-v3.6 main.py $@
+	bash test.sh $(N) $(NN) whisk/actionloop-python-v3.7 main.py $@
 
 php.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/action-php-v7.1 main.php $@
