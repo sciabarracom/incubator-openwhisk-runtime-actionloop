@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM whisk/actionloop as builder
+FROM openwhisk/actionloop as builder
 
 FROM swift:4.2.1
 

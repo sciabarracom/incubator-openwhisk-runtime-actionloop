@@ -6,7 +6,7 @@ build:
 	docker build -t whisk/actionloop-$(IMG) .
 	docker tag whisk/actionloop-$(IMG) $(HUB)/$(IMG):$(VER)
 
-publish:
+push: build
 	docker push $(HUB)/$(IMG):$(VER)
 
 clean:

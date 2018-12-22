@@ -6,7 +6,7 @@ build:
 	docker build -t actionloop-$(IMG) .
 	docker tag actionloop-$(IMG) $(HUB)/$(IMG):$(VER)
 
-publish:
+push: build
 	docker push $(HUB)/$(IMG):$(VER)
 
 clean:

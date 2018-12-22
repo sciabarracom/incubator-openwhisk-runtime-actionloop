@@ -1,10 +1,10 @@
-USER=docker.io/msciab
+USER=docker.io/actionloop
 IMG=$(USER)/actionloop-swift-v4.2.1 
 
 build:
 	docker build -t $(IMG) .
 
-publish:
+push: build
 	docker push $(IMG)
 
 clean:
