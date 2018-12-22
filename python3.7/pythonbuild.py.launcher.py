@@ -3,11 +3,36 @@ from sys import stdin
 from sys import stdout
 from sys import stderr
 from os import fdopen
-import os, json
+import sys, os, json, traceback
+
+try:
+  # if the directory 'virtualenv' is extracted out of a zip file
+  path_to_virtualenv = os.path.abspath('./virtualenv')
+  if os.path.isdir(path_to_virtualenv):
+    # activate the virtualenv using activate_this.py contained in the virtualenv
+    activate_this_file = path_to_virtualenv + '/bin/activate_this.py'
+    if os.path.exists(activate_this_file):
+      with open(activate_this_file) as f:
+        code = compile(f.read(), activate_this_file, 'exec')
+        exec(code, dict(__file__=activate_this_file))
+    else:
+      sys.stderr.write('Invalid virtualenv. Zip file does not include /virtualenv/bin/' + os.path.basename(activate_this_file) + '\n')
+      sys.exit(1)
+except Exception:
+  traceback.print_exc(file=sys.stderr, limit=0)
+  sys.exit(1)
+
+# now import the action as process input/output
 from main__ import main as main
 
-out = fdopen(3, "wb")
+# if there are some arguments exit immediately
+if len(sys.argv) >1:
+  sys.stderr.flush()
+  sys.stdout.flush()
+  sys.exit(0)
+
 env = os.environ
+out = fdopen(3, "wb")
 while True:
   line = stdin.readline()
   if not line: break
@@ -18,10 +43,14 @@ while True:
       payload = args["value"]
     else:
       env["__OW_%s" % key.upper()]= args[key]
-  res = main(payload)
+  res = {}
+  try:
+    res = main(payload)
+  except Exception as ex:
+    print(traceback.format_exc(), file=stderr)
+    res = {"error": str(ex)}
   out.write(json.dumps(res, ensure_ascii=False).encode('utf-8'))
   out.write(b'\n')
   stdout.flush()
   stderr.flush()
   out.flush()
-

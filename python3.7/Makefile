@@ -3,14 +3,17 @@ IMG=python-v3.7
 VER=1
 
 build:
-	docker build -t whisk/actionloop-$(IMG) .
-	docker tag whisk/actionloop-$(IMG) $(HUB)/$(IMG):$(VER)
+	docker build -t actionloop-$(IMG) .
+	docker tag actionloop-$(IMG) $(HUB)/$(IMG):$(VER)
 
 publish:
 	docker push $(HUB)/$(IMG):$(VER)
 
 clean:
-	docker rmi $(HUB)/$(IMG):$(VER) whisk/actionloop-$(IMG) 
+	docker rmi -f $(HUB)/$(IMG):$(VER) actionloop-$(IMG)
+
+enter: build
+	docker run -p 8080:8080 -ti actionloop-$(IMG) $(OPT)
 
 
-.PHONY: build publish clean
+.PHONY: build publish clean run shell

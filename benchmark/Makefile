@@ -30,7 +30,7 @@ main_cr.zip: main.cr
 
 go.test: multipost main_go.zip main_gccgo.zip
 	bash test.sh $(N) $(NN) msciab/actionloop-gccgo-v1.10 main_gccgo.zip $@
-	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11:b51980e main_go.zip $@
+	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11 main_go.zip $@
 
 node.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/nodejs6action main.js $@

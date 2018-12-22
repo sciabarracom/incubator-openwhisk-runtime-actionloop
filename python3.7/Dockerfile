@@ -31,10 +31,12 @@ RUN pip install \
     virtualenv==16.0.0 \
     twisted==18.7.0
 
-RUN mkdir -p /pythonAction/action
-WORKDIR /pythonAction
+RUN mkdir -p /action
+WORKDIR /
 COPY --from=builder /bin/proxy /bin/proxy
 ADD pythonbuild.py /bin/compile
 ADD pythonbuild.py.launcher.py /bin/compile.launcher.py
 ENV OW_COMPILER=/bin/compile
-ENTRYPOINT [ "/bin/proxy" ]
+ENTRYPOINT []
+CMD ["/bin/proxy"]
+

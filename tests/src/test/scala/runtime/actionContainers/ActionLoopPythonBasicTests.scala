@@ -23,9 +23,9 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
-class ActionLoopBasicPythonTests extends BasicActionRunnerTests with WskActorSystem {
+class ActionLoopPythonBasicTests extends BasicActionRunnerTests with WskActorSystem {
 
-  val image = "whisk/actionloop-python-v3.7"
+  val image = "actionloop-python-v3.7"
 
   override def withActionContainer(env: Map[String, String] = Map.empty)(
     code: ActionContainer => Unit) = {
@@ -39,7 +39,7 @@ class ActionLoopBasicPythonTests extends BasicActionRunnerTests with WskActorSys
 
   override val testNoSourceOrExec = TestConfig("")
 
-  override val testNotReturningJson = TestConfig(
+  /*override val testNotReturningJson = TestConfig(
     """|from sys import stdin
        |from os import fdopen
        |if __name__ == '__main__':
@@ -49,13 +49,20 @@ class ActionLoopBasicPythonTests extends BasicActionRunnerTests with WskActorSys
        |    out.flush()
        |    stdin.readline()
        |""".stripMargin)
+      */
+
+  override val testNotReturningJson =
+    TestConfig("""
+                 |def main(args):
+                 |    return "not a json object"
+               """.stripMargin)
 
 
   override val testEcho = TestConfig(
     """|import sys
        |def main(args):
-       |   print(u"hello stdout", file=sys.stdout)
-       |   print(u"hello stderr", file=sys.stderr)
+       |   print("hello stdout", file=sys.stdout)
+       |   print("hello stderr", file=sys.stderr)
        |   return args
     """.stripMargin)
 

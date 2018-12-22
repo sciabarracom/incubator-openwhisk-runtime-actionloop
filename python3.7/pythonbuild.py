@@ -20,71 +20,64 @@
 
 from __future__ import print_function
 import os
-import re
 import sys
 import codecs
 import subprocess
 
 
-# The crazy logic of this assembling:
-# - a single exec is renamed to __main__.py
-# - otherwise if there is a __main__ and an exec, the __main__ win
-# - the __main__ is copied to main___
-# - if there is a "if __name__ == __main__" it is executed
-# otherwise a launcher is created 
+def copy(src, dst):
+    with codecs.open(src, 'r', 'utf-8') as s:
+        body = s.read()
+        with codecs.open(dst, 'w', 'utf-8') as d:
+            d.write(body)
+
+# if there is an exec copy to main__.py
+# else if there is a __main__.py copy to main__.py
+# (exec prevails over __main__.py)
+# then copy the launcher in exec__.py replacing the main function
 def sources(launcher, source_dir, main):
     # source and dest
     src = "%s/exec" % source_dir
-    dst = "%s/__main__.py" % source_dir 
-    # copy exec to __main__
-    # detect if it is also an entry point
-    body = ""
-    if os.path.isfile(src) and not os.path.isfile(dst):
-        with codecs.open(src, 'r', 'utf-8') as s:
-            body = s.read()
-        with codecs.open(dst, 'w', 'utf-8') as d:
-            d.write(body)
-
-    # renaming __main__ to main__
-    has_main = False
-    body = ""
-    src = "%s/__main__.py" % source_dir
-    dst = "%s/main__.py" % source_dir 
+    dst = "%s/main__.py" % source_dir
+    # copy exec to main__.py
     if os.path.isfile(src):
-        with codecs.open(src, 'r', 'utf-8') as s:
-            body = s.read()
-        has_main = body.find("""if __name__ == '__main__':""") != -1
-        with codecs.open(dst, 'w', 'utf-8') as d:
-            d.write(body)
-
-    # we have a main, we can return
-    if has_main:
-        return dst
+        copy(src,dst)
+    else:
+        # renaming __main__ to main__
+        src = "%s/__main__.py" % source_dir
+        if os.path.isfile(src):
+            copy(src, dst)
 
     # copy a launcher
     starter = "%s/exec__.py" % source_dir
     with codecs.open(launcher, 'r', 'utf-8') as s:
         with codecs.open(starter, 'w', 'utf-8') as d:
             body = s.read()
-            body = body.replace("from main__ import main as main", 
-                         "from main__ import %s as main" % main)
+            body = body.replace("from main__ import main as main",
+                                "from main__ import %s as main" % main)
             d.write(body)
     return starter
 
+# build the launcher but only if there is the main
 def build(source_dir, target_file, launcher):
-    with codecs.open(target_file, 'w', 'utf-8') as d:
-        d.write("""#!/bin/bash
+    main = "%s/main__.py" % source_dir
+    cmd = "#!/bin/bash"
+    if os.path.isfile(main):
+        cmd += """
 cd %s
-if test -d virtualenv
-then export PYTHONPATH="$PWD/virtualenv"
-fi
-exec python3 %s
-""" % (source_dir, launcher))
+exec python %s "$@"
+""" % (source_dir, launcher)
+    else:
+        cmd += """
+echo "Zip file does not include mandatory files."
+"""
+    with codecs.open(target_file, 'w', 'utf-8') as d:
+        d.write(cmd)
     os.chmod(target_file, 0o755)
 
-def main(argv):
+def compile(argv):
     if len(argv) < 4:
-        print("usage: <main-function> <source-dir> <target-dir>")
+        sys.stdout.write("usage: <main-function> <source-dir> <target-dir>\n")
         sys.exit(1)
 
     main = argv[1]
@@ -93,6 +86,25 @@ def main(argv):
     launcher = os.path.abspath(argv[0]+".launcher.py")
     starter = sources(launcher, source_dir, main)
     build(source_dir, target_file, starter)
+    sys.stdout.flush()
+    sys.stderr.flush()
+    return target_file
+
 
 if __name__ == '__main__':
-    main(sys.argv)
+    p = subprocess.Popen([compile(sys.argv), "exit"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
+    (o, e) = p.communicate()
+    if isinstance(o, bytes) and not isinstance(o, str):
+        o = o.decode('utf-8')
+    if isinstance(e, bytes) and not isinstance(e, str):
+        e = e.decode('utf-8')
+    if o:
+        sys.stdout.write(o)
+        sys.stdout.flush()
+
+    if e:
+        sys.stderr.write(e)
+        sys.stderr.flush()
+
