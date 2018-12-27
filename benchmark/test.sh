@@ -6,8 +6,6 @@ AC=${4:?action}
 OUT=${5:?out}
 START=9000
 END=$(expr $START + $N - 1)
-# killing 
-docker ps -q | xargs docker kill
 # starting images
 seq $START $END | while read port 
 do docker run -d -p $port:8080  --name "under-test-$port" --rm $RT
