@@ -58,7 +58,7 @@ func encodeInit(filename string) ([]byte, error) {
 	buf, _ := ioutil.ReadFile(*Init)
 	toEncode := make(map[string]interface{})
 	toEncode["main"] = *MainFunc
-	if strings.HasSuffix(filename, ".zip") || strings.HasSuffix(filename, ".exe") {
+	if strings.HasSuffix(filename, ".zip") || strings.HasSuffix(filename, ".exe") || strings.HasSuffix(filename, ".jar") {
 		toEncode["binary"] = true
 		toEncode["code"] = base64.StdEncoding.EncodeToString(buf)
 	} else {

@@ -1,5 +1,6 @@
 *.zip
-*.done
+*.jar
+*.class
 *.init
 *.run
 *.test
