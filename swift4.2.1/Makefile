@@ -1,5 +1,6 @@
 USER=docker.io/actionloop
-IMG=$(USER)/actionloop-swift-v4.2.1 
+VER=1
+IMG=$(USER)/swift-v4.2.1:$(VER)
 
 build:
 	docker build -t $(IMG) .

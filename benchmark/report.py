@@ -14,7 +14,7 @@ def process_line(info, time):
     global legends, groups
     i = info.split(" ")
     t = time.split(" ")
-    time = float(t[0])
+    time = float(t[1])
     key = i[0]
     #label = "%s %s" % (i[1], i[2])
     label = i[1]
@@ -26,16 +26,15 @@ def process_line(info, time):
 
 
 def process_input():
-    odd = True
     buf = ""
+    buf2 = ""
     for line in fileinput.input():
         line = line.strip()
-        if odd:
-            buf = line
-        else:
-            process_line(buf, line)
-            buf = ""
-        odd = not odd
+        if line.startswith("init"): buf = line
+        elif line.startswith("run"): buf = line
+        elif line.startswith("run"): buf = line
+        elif line.startswith("real"): buf2 = line
+        elif line.startswith("sys"): process_line(buf, buf2)
 
 sampleData = {
     "labels": [],
