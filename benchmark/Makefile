@@ -21,6 +21,18 @@ main_gccgo.zip: main.go
 main_go.zip: main.go
 	docker run -i openwhisk/actionloop-golang-v1.11 -compile main <$< >$@
 
+GSON=gson-2.8.5.jar
+
+$(GSON):
+	curl -LO "https://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/2.8.5/gson-2.8.5.jar"
+
+main.jar: main.java $(GSON)
+	javac -cp $(GSON) main.java
+	jar cvf main.jar main.class
+
+java.test: multipost main.jar 
+	bash test.sh $(N) $(NN) openwhisk/javaaction main.jar $@
+
 go.test: multipost main_go.zip main_gccgo.zip
 	bash test.sh $(N) $(NN) actionloop/gccgo-v1.10:1 main_gccgo.zip $@
 	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11 main_go.zip $@
