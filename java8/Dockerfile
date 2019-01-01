@@ -38,4 +38,4 @@ ADD javabuild.py /bin/javabuild
 ADD exec__.java /usr/java/src/exec__.java
 ADD gson-2.8.5.jar /usr/java/lib
 ENV OW_COMPILER=/bin/javabuild
-
+ENTRYPOINT /bin/proxy

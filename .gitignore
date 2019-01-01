@@ -12,3 +12,4 @@ multipost
 .idea/
 .gradle/
 __pycache__/
+tests/build/
