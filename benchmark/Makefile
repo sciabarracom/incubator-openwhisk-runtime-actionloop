@@ -35,7 +35,7 @@ java.test: multipost main.jar
 	bash test.sh $(N) $(NN) actionloop/java-v8:0 main.java $@
 
 go.test: multipost main_go.zip main_gccgo.zip
-	bash test.sh $(N) $(NN) actionloop/gccgo-v1.10:1 main_gccgo.zip $@
+	#bash test.sh $(N) $(NN) actionloop/gccgo-v1.10:1 main_gccgo.zip $@
 	bash test.sh $(N) $(NN) openwhisk/actionloop-golang-v1.11 main_go.zip $@
 
 node.test: multipost
