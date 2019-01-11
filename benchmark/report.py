@@ -101,7 +101,7 @@ def html():
 var barDataRun = %s;
 var barDataInit = %s;
 Chart.scaleService.updateScaleDefaults('linear', {
-    ticks: { min: 0 }
+    ticks: { min: 0, max: 45 }
 });
 var ctx1 = document.getElementById('runChart').getContext('2d');
 var chart1 = new Chart(ctx1, {

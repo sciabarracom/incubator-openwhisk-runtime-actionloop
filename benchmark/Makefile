@@ -30,6 +30,9 @@ main.jar: main.java $(GSON)
 	javac -cp $(GSON) main.java
 	jar cvf main.jar main.class
 
+dotnet.test:
+	bash test.sh $(N) $(NN) openwhisk/action-dotnet-v2.2 main_dotnet.zip $@ "Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main"
+
 java.test: multipost main.jar 
 	bash test.sh $(N) $(NN) openwhisk/javaaction main.jar $@
 	bash test.sh $(N) $(NN) actionloop/java-v8:0 main.java $@
@@ -62,8 +65,8 @@ swift.test: multipost main.swift main_swift.zip
 	bash test.sh $(N) $(NN) openwhisk/action-swift-v4.1:latest main.swift $@
 	bash test.sh $(N) $(NN) actionloop/swift-v4.2.1:1 main_swift.zip $@
 
-#ruby.test: multipost
-#	bash test.sh $(N) $(NN) openwhisk/action-ruby-v2.5 main.rb $@
+ruby.test: multipost
+	bash test.sh $(N) $(NN) openwhisk/action-ruby-v2.5 main.rb $@
 
 main_cr.zip: main.cr
 	docker run -i juice10/actionloop-crystal-v0.27 -compile main <$< >$@
