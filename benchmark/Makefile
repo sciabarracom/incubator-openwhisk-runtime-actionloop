@@ -48,9 +48,10 @@ node.test: multipost
 	#bash test.sh $(N) $(NN) msciab/actionloop-nodejs-v6.14 main.js $@
 
 python.test: multipost
-	bash test.sh $(N) $(NN) openwhisk/python2action main.py $@
-	bash test.sh $(N) $(NN) openwhisk/python3action main.py $@
+	#bash test.sh $(N) $(NN) openwhisk/python2action main.py $@
+	#bash test.sh $(N) $(NN) openwhisk/python3action main.py $@
 	bash test.sh $(N) $(NN) actionloop/python-v3.7:1 main.py $@
+	bash test.sh $(N) $(NN) ibmfunctions/action-python-v3.7:master main.py $@
 
 php.test: multipost
 	bash test.sh $(N) $(NN) openwhisk/action-php-v7.3 main.php $@
